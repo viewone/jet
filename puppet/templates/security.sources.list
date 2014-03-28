@@ -1,0 +1,3 @@
+# Security Update List
+deb http://security.debian.org/ wheezy/updates main
+deb-src http://security.debian.org/ wheezy/updates main
