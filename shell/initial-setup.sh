@@ -1,16 +1,16 @@
 #!/bin/bash
 
-VAGRANT_CORE_FOLDER="/vagrant/viewone"
+VAGRANT_CORE_FOLDER="/vagrant"
 
-OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" ID)
-CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" CODENAME)
+OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" ID)
+CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" CODENAME)
 
 if [[ ! -d /.viewone-stuff ]]; then
     mkdir /.viewone-stuff
 
     echo "${VAGRANT_CORE_FOLDER}" > "/.viewone-stuff/vagrant-core-folder.txt"
 
-    cat "${VAGRANT_CORE_FOLDER}/shell/self-promotion.txt"
+    cat "${VAGRANT_CORE_FOLDER}/viewone/shell/self-promotion.txt"
     echo "Created directory /.viewone-stuff"
 fi
 

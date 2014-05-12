@@ -2,9 +2,9 @@
 
 VAGRANT_CORE_FOLDER=$(cat "/.viewone-stuff/vagrant-core-folder.txt")
 
-OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" ID)
-RELEASE=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" RELEASE)
-CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" CODENAME)
+OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" ID)
+RELEASE=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" RELEASE)
+CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" CODENAME)
 
 if [[ ! -f /.viewone-stuff/update-puppet ]]; then
     if [ "${OS}" == 'debian' ] || [ "${OS}" == 'ubuntu' ]; then

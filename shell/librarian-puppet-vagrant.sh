@@ -2,8 +2,8 @@
 
 VAGRANT_CORE_FOLDER=$(cat "/.viewone-stuff/vagrant-core-folder.txt")
 
-OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" ID)
-CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/shell/os-detect.sh" CODENAME)
+OS=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" ID)
+CODENAME=$(/bin/bash "${VAGRANT_CORE_FOLDER}/viewone/shell/os-detect.sh" CODENAME)
 
 # Directory in which librarian-puppet should manage its modules directory
 PUPPET_DIR=/etc/puppet/
@@ -34,7 +34,7 @@ if [[ ! -d "${PUPPET_DIR}" ]]; then
     echo "Created directory ${PUPPET_DIR}"
 fi
 
-cp "${VAGRANT_CORE_FOLDER}/puppet/Puppetfile" "${PUPPET_DIR}"
+cp "${VAGRANT_CORE_FOLDER}/viewone/puppet/Puppetfile" "${PUPPET_DIR}"
 echo "Copied Puppetfile"
 
 if [ "${OS}" == 'debian' ] || [ "${OS}" == 'ubuntu' ]; then
