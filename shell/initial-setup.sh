@@ -19,12 +19,12 @@ CODENAME=$(/bin/bash "${JET_DIRECTORY}/shell/os-detect.sh" CODENAME)
 
 if [[ ! -d "${VIEWONE_DIRECTORY}" ]]; then
     mkdir "${VIEWONE_DIRECTORY}"
-
-    echo "${JET_DIRECTORY}" > "${VIEWONE_DIRECTORY}/core-directory.txt"
-
-    cat "${JET_DIRECTORY}/shell/self-promotion.txt"
     echo "Created directory ${VIEWONE_DIRECTORY}"
 fi
+
+echo "${JET_DIRECTORY}" > "${VIEWONE_DIRECTORY}/core-directory.txt"
+
+cat "${JET_DIRECTORY}/shell/self-promotion.txt"
 
 if [[ ! -f "${VIEWONE_DIRECTORY}/initial-setup-repo-update" ]]; then
     if [ "${OS}" == 'debian' ] || [ "${OS}" == 'ubuntu' ]; then
