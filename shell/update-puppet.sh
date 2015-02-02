@@ -21,10 +21,10 @@ CODENAME=$(/bin/bash "${JET_DIRECTORY}/shell/os-detect.sh" CODENAME)
 if [[ ! -f "${VIEWONE_DIRECTORY}/update-puppet" ]]; then
     if [ "${OS}" == 'debian' ] || [ "${OS}" == 'ubuntu' ]; then
         echo "Downloading http://apt.puppetlabs.com/puppetlabs-release-${CODENAME}.deb"
-        wget --quiet --tries=5 --timeout=10 -O "${VIEWONE_DIRECTORY}/update-puppet/puppetlabs-release-${CODENAME}.deb" "http://apt.puppetlabs.com/puppetlabs-release-${CODENAME}.deb"
+        wget --quiet --tries=5 --timeout=10 -O "${VIEWONE_DIRECTORY}/puppetlabs-release-${CODENAME}.deb" "http://apt.puppetlabs.com/puppetlabs-release-${CODENAME}.deb"
         echo "Finished downloading http://apt.puppetlabs.com/puppetlabs-release-${CODENAME}.deb"
 
-        dpkg -i "${VIEWONE_DIRECTORY}/update-puppet/puppetlabs-release-${CODENAME}.deb" >/dev/null
+        dpkg -i "${VIEWONE_DIRECTORY}/puppetlabs-release-${CODENAME}.deb" >/dev/null
 
         echo "Running update-puppet apt-get update"
         apt-get update >/dev/null
