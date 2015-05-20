@@ -12,17 +12,19 @@
 dir="/usr/local/jet"
 bin="/usr/local/bin"
 
-# Get new repository
-if [ ! -d "$dir" ]; then
-  # Clone repository if not exists
-  echo "Clone repository"
-  git clone git@bitbucket.org:viewone/jet.git "$dir"
-else
-  # Pull repository if exists
-  echo "Repository already exists in ${dir}"
-  echo "Pulling changes from repository"
-  git --work-tree="${dir}" --git-dir="${dir}"/.git pull origin master
+# Get jet
+if [ -d "$dir" ]; then
+  echo "Delete existing jet ${dir}"
+  rm -r "${dir}"
+  rm "${bin}/jet"
 fi
+
+echo "Create jet directory"
+mkdir -p ${dir}
+
+# Download jet
+echo "Download and extract jet"
+wget https://github.com/viewone/jet/archive/master.tar.gz && tar -xzf master.tar.gz -C "$dir" --strip-components=1 && rm master.tar.gz
 
 # Symlink files if .dotfiles directory exists otherwise exit script
 if [ -d "$dir" ]; then
@@ -34,8 +36,8 @@ fi
 
 # Function to symlink
 link() {
-  from="$dir"
-  to="$bin"
+  from="$1"
+  to="$2"
   echo "Linking '$from' to '$to'"
   rm -f "$to"
   ln -s "$from" "$to"
@@ -50,8 +52,5 @@ for location in $(find  ${dir} -name '*.symlink'); do
   file="${file##*/}"
 
   # Symlink with link function
-  link "$location" "$HOME/.$file"
+  link "$location" "${bin}/$file"
 done
-
-# Change terminal settings
-open "$dir/kierzniak.terminal"
