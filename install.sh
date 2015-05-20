@@ -12,6 +12,8 @@
 dir="/usr/local/jet"
 bin="/usr/local/bin"
 
+source $dir/shell/env.sh
+
 # Get jet
 if [ -d "$dir" ]; then
   echo "Delete existing jet ${dir}"
