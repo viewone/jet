@@ -1,18 +1,7 @@
 #!/bin/bash
 
-if [ ! -z $1 ] 
-then 
-    JET_DIRECTORY=$1
-else
-    JET_DIRECTORY="/home/viewone/jet"
-fi
-
-if [ ! -z $2 ] 
-then 
-    VIEWONE_DIRECTORY=$2
-else
-    VIEWONE_DIRECTORY="/home/viewone"
-fi
+JET_DIRECTORY="/usr/local/jet"
+JET_FILES_DIRECTORY="/usr/local/jet"
 
 OS=$(/bin/bash "${JET_DIRECTORY}/shell/os-detect.sh" ID)
 CODENAME=$(/bin/bash "${JET_DIRECTORY}/shell/os-detect.sh" CODENAME)
@@ -23,7 +12,7 @@ PUPPET_DIR=/etc/puppet/
 $(which git > /dev/null 2>&1)
 FOUND_GIT=$?
 
-if [ "${FOUND_GIT}" -ne '0' ] && [ ! -f "${VIEWONE_DIRECTORY}/librarian-puppet-installed" ]; then
+if [ "${FOUND_GIT}" -ne '0' ] && [ ! -f "${JET_FILES_DIRECTORY}/librarian-puppet-installed" ]; then
 
     echo 'Installing git'
 
@@ -41,16 +30,16 @@ cp "${JET_DIRECTORY}/puppet/Puppetfile" "${PUPPET_DIR}"
 echo "Copied Puppetfile"
 
 if [ "${OS}" == 'debian' ] || [ "${OS}" == 'ubuntu' ]; then
-    if [[ ! -f "${VIEWONE_DIRECTORY}/librarian-base-packages" ]]; then
+    if [[ ! -f "${JET_FILES_DIRECTORY}/librarian-base-packages" ]]; then
         echo 'Installing base packages for librarian'
         apt-get install -y build-essential ruby-dev >/dev/null
         echo 'Finished installing base packages for librarian'
 
-        touch "${VIEWONE_DIRECTORY}/librarian-base-packages"
+        touch "${JET_FILES_DIRECTORY}/librarian-base-packages"
     fi
 fi
 
-if [[ ! -f "${VIEWONE_DIRECTORY}/librarian-puppet-installed" ]]; then
+if [[ ! -f "${JET_FILES_DIRECTORY}/librarian-puppet-installed" ]]; then
     echo 'Installing librarian-puppet'
     gem install librarian-puppet >/dev/null
     echo 'Finished installing librarian-puppet'
@@ -59,7 +48,7 @@ if [[ ! -f "${VIEWONE_DIRECTORY}/librarian-puppet-installed" ]]; then
     cd "${PUPPET_DIR}" && librarian-puppet install --clean >/dev/null
     echo 'Finished running initial librarian-puppet'
 
-    touch "${VIEWONE_DIRECTORY}/librarian-puppet-installed"
+    touch "${JET_FILES_DIRECTORY}/librarian-puppet-installed"
 else
     echo 'Running update librarian-puppet'
     cd "${PUPPET_DIR}" && librarian-puppet update >/dev/null

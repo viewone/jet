@@ -1,0 +1,7 @@
+#!/bin/bash
+
+JET_DIRECTORY="/usr/local/jet"
+
+/bin/bash "${JET_DIRECTORY}/shell/initial-setup.sh"
+/bin/bash "${JET_DIRECTORY}/shell/update-puppet.sh"
+/bin/bash "${JET_DIRECTORY}/shell/librarian-puppet.sh"
