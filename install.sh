@@ -24,7 +24,7 @@ mkdir -p "${dir}"
 
 # Download jet
 echo "Download and extract jet"
-wget https://github.com/viewone/jet/archive/master.tar.gz && tar -xzf master.tar.gz -C "$dir" --strip-components=1 && rm master.tar.gz
+wget --quiet --tries=5 --timeout=10 https://github.com/viewone/jet/archive/master.tar.gz && tar -xzf master.tar.gz -C "$dir" --strip-components=1 && rm master.tar.gz
 
 # Symlink files if .dotfiles directory exists otherwise exit script
 if [ -d "$dir" ]; then
