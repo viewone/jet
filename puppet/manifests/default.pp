@@ -46,6 +46,20 @@ class { 'server':
         host_aliases => 'mci.vieowne.pl mci',
       },
     },
+    sources => {
+      'debian' => {
+        'location' => 'http://ftp.pl.debian.org/debian/',
+        'release' => 'wheezy'
+      },
+      'updates' => {
+        'location' => 'http://ftp.pl.debian.org/debian/',
+        'release' => 'wheezy-updates'
+      },
+      'security' => {
+        'location' => 'http://security.debian.org/',
+        'release' => 'wheezy/updates'
+      },
+    },
     users => {
          'kierzniak' => {
               uid => 500,
