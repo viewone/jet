@@ -26,9 +26,6 @@ mkdir -p "${dir}"
 echo "Download and extract jet"
 wget https://github.com/viewone/jet/archive/master.tar.gz && tar -xzf master.tar.gz -C "$dir" --strip-components=1 && rm master.tar.gz
 
-# Set environmental variables
-source $dir/shell/env.sh
-
 # Symlink files if .dotfiles directory exists otherwise exit script
 if [ -d "$dir" ]; then
   echo "Symlinking dotfiles from ${dir}"
