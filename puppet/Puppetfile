@@ -1,10 +1,4 @@
-forge "http://forge.puppetlabs.com"
+forge "https://forgeapi.puppetlabs.com"
 
-mod 'puppetlabs/stdlib'
-mod 'puppetlabs/concat'
-mod 'puppetlabs/apt'
-mod 'puppetlabs/ntp'
-mod 'saz/ssh'
-mod 'attachmentgenie/locales'
-mod 'example42/timezone'
-mod 'example42/logrotate'
+mod 'viewone-server',
+  :git => "https://github.com/viewone/puppet-server"
