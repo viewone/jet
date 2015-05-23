@@ -32,6 +32,12 @@ while [ "$1" != "" ]; do
         install )
             command=$1
             ;;
+        all )
+            install_base
+            install_puppet
+            install_librarian
+            exit
+            ;;
         apply )
             command=$1
             ;;
