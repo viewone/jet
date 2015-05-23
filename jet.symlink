@@ -22,9 +22,17 @@ function install_librarian
     /bin/bash "${JET_DIRECTORY}/shell/librarian-puppet.sh"
 }
 
+function apply_puppet
+{
+    /bin/bash "${JET_DIRECTORY}/shell/apply-puppet.sh"
+}
+
 while [ "$1" != "" ]; do
     case $1 in
         install )
+            command=$1
+            ;;
+        apply )
             command=$1
             ;;
         base )
@@ -35,6 +43,16 @@ while [ "$1" != "" ]; do
             ;;
         librarian )
             argument=$1
+            ;;
+        -m | --manifest )
+            shift
+            JET_MANIFEST=$1
+            export JET_MANIFEST
+            ;;
+        -p | --puppetfile )
+            shift
+            JET_PUPPETFILE=$1
+            export JET_PUPPETFILE
             ;;
         -h | --help )
             usage
