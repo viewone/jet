@@ -2,6 +2,49 @@
 
 JET_DIRECTORY="/usr/local/jet"
 
-/bin/bash "${JET_DIRECTORY}/shell/initial-setup.sh"
-/bin/bash "${JET_DIRECTORY}/shell/update-puppet.sh"
-/bin/bash "${JET_DIRECTORY}/shell/librarian-puppet.sh"
+function usage
+{
+    echo "Usage: jet <command> [options]"
+}
+
+function install_base
+{
+    /bin/bash "${JET_DIRECTORY}/shell/initial-setup.sh"
+}
+
+function install_puppet
+{
+    /bin/bash "${JET_DIRECTORY}/shell/update-puppet.sh"
+}
+
+function install_librarian
+{
+    /bin/bash "${JET_DIRECTORY}/shell/librarian-puppet.sh"
+}
+
+while [ "$1" != "" ]; do
+    case $1 in
+        install )
+            command=$1
+            ;;
+        base )
+            argument=$1
+            ;;
+        puppet )
+            argument=$1
+            ;;
+        librarian )
+            argument=$1
+            ;;
+        -h | --help )
+            usage
+            exit
+            ;;
+        * )
+            usage
+            exit 1
+    esac
+    shift
+done
+
+eval ${command}_${argument}
